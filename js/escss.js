@@ -259,7 +259,7 @@ var Escss = function(hash){
   this.makeStyleOfQuantity = function(clsExcludePrefix){
     var propertyKey = clsExcludePrefix.match(/^[a-zA-Z]+/);
     var val = clsExcludePrefix.replace(propertyKey, '');
-    if(val.match(/^\d+$/)) val += 'px';
+    if(val.match(/^\-?\d+$/)) val += 'px';
     if(val.match(/pr$/)) val = val.replace('pr', '%');
     var property = this.RULE_OF_QUANTITY[propertyKey];
     return property + ':' + val;
@@ -282,7 +282,7 @@ var Escss = function(hash){
 
   this.makeStyleOfOther = function(clsExcludePrefix){
     //ex border-bottom:solid_1px_#000
-    return clsExcludePrefix.replace('_', ' ');
+    return clsExcludePrefix.replace(/_/g, ' ');
   }
 
   this.changePrefixEscaped = function(prefix){
